@@ -6,19 +6,14 @@ public class ConsoleProgress implements Runnable {
     public void run() {
         String[] arr = {"-", "\\", "|", "/"};
         while (!Thread.currentThread().isInterrupted()) {
-            print(arr);
-        }
-    }
-
-    private void print(String[] strings) {
-        try {
-            for (String s : strings) {
-                System.out.print("\r load: " + s);
-                Thread.sleep(500);
-            }
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-            System.out.println("\n" + Thread.currentThread().getState());
+            try {
+                for (String s : arr) {
+                    System.out.print("\r load: " + s);
+                    Thread.sleep(500);
+                }
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            };
         }
     }
 

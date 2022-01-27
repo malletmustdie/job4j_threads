@@ -5,15 +5,14 @@ public class ConsoleProgress implements Runnable {
     @Override
     public void run() {
         String[] arr = {"-", "\\", "|", "/"};
+        int index = 0;
         while (!Thread.currentThread().isInterrupted()) {
             try {
-                for (int i = 0; i < arr.length; i++) {
-                    if (i == arr.length - 1) {
-                        i = 0;
-                    }
-                    System.out.print("\r load: " + arr[i]);
-                    Thread.sleep(300);
+                System.out.print("\r load: " + arr[index++]);
+                if (index == arr.length) {
+                    index = 0;
                 }
+                Thread.sleep(300);
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }

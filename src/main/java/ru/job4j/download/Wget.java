@@ -1,17 +1,17 @@
-package ru.job4j.concurrent;
+package ru.job4j.download;
 
 import java.io.BufferedInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 
-public class WgetDownload implements Runnable {
+public class Wget implements Runnable {
 
     private final String url;
     private final int speed;
     private final String targetFile;
 
-    public WgetDownload(String url, int speed, String targetFile) {
+    public Wget(String url, int speed, String targetFile) {
         this.url = url;
         this.speed = speed;
         this.targetFile = targetFile;
@@ -44,7 +44,7 @@ public class WgetDownload implements Runnable {
         String url = args[0];
         int speed = Integer.parseInt(args[1]);
         String targetFile = args[2];
-        Thread wget = new Thread(new WgetDownload(url, speed, targetFile));
+        Thread wget = new Thread(new Wget(url, speed, targetFile));
         wget.start();
         wget.join();
     }

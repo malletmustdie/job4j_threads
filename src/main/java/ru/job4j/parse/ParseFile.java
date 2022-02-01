@@ -5,12 +5,10 @@ import java.util.function.Predicate;
 
 public class ParseFile {
 
-    private final File file;
     private final InputContent inputContent;
     private final OutputContent outputContent;
 
-    public ParseFile(File file, InputContent inputContent, OutputContent outputContent) {
-        this.file = file;
+    public ParseFile(InputContent inputContent, OutputContent outputContent) {
         this.inputContent = inputContent;
         this.outputContent = outputContent;
     }

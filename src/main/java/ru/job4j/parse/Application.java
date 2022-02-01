@@ -9,7 +9,7 @@ public class Application {
         File outputFile = new File("src/main/resources/output-test.txt");
         InputContent inputContent = new InputContentImpl();
         OutputContent outputContent = new OutputContentImpl();
-        ParseFile parser = new ParseFile(inputFile, inputContent, outputContent);
+        ParseFile parser = new ParseFile(inputContent, outputContent);
 
         showInputContent(parser, inputFile);
         showInputContentWithoutUnicode(parser, inputFile);

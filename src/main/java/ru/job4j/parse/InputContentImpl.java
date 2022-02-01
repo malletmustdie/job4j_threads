@@ -15,18 +15,18 @@ public class InputContentImpl implements InputContent {
 
     @Override
     public String getContent(File file, Predicate<Integer> filter) {
-        String output = "";
+        StringBuilder output = new StringBuilder();
         try (InputStream i = new FileInputStream(file)) {
             int data;
             while ((data = i.read()) > 0) {
                 if (filter.test(data)) {
-                    output += (char) data;
+                    output.append((char) data);
                 }
             }
         } catch (IOException e) {
             LOG.error("get content without unicode error: " + e.getMessage());
         }
-        return output;
+        return output.toString();
     }
 
 }

@@ -30,13 +30,9 @@ public class SimpleBlockingQueue<T> {
         notifyAll();
     }
 
-    public synchronized T poll() {
+    public synchronized T poll() throws InterruptedException {
         while (queue.isEmpty()) {
-            try {
-                this.wait();
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-            }
+            wait();
         }
         var result = queue.poll();
         notifyAll();

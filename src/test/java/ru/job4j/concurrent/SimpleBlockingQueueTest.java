@@ -7,8 +7,6 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
-
 public class SimpleBlockingQueueTest {
 
     @Test
@@ -29,7 +27,7 @@ public class SimpleBlockingQueueTest {
                         try {
                             resultList.add(queue.poll());
                         } catch (InterruptedException e) {
-                            e.printStackTrace();
+                            Thread.currentThread().interrupt();
                         }
                     }
                 }

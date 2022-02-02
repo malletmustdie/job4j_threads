@@ -13,7 +13,7 @@ public class SimpleBlockingQueueTest {
 
     @Test
     public void whenAdd10NumberThenReturn10Numbers() throws InterruptedException {
-        SimpleBlockingQueue<Integer> queue = new SimpleBlockingQueue<>();
+        SimpleBlockingQueue<Integer> queue = new SimpleBlockingQueue<>(10);
         List<Integer> resultList = new ArrayList<>();
 
         Thread producer = new Thread(
@@ -36,6 +36,7 @@ public class SimpleBlockingQueueTest {
         producer.join();
         consumer.join();
         Assert.assertEquals(10, resultList.size());
+        Assert.assertEquals(0, queue.size());
         Assert.assertThat(List.of(0, 1, 2, 3, 4, 5, 6, 7, 8, 9), Matchers.is(resultList));
     }
 

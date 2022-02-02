@@ -12,7 +12,20 @@ public class SimpleBlockingQueue<T> {
     @GuardedBy("this")
     private final Queue<T> queue = new LinkedList<>();
 
+    private final int capacity;
+
+    public SimpleBlockingQueue(int capacity) {
+        this.capacity = capacity;
+    }
+
     public synchronized void offer(T value) {
+        while (queue.size() == capacity) {
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        }
         queue.offer(value);
         notifyAll();
     }
@@ -28,6 +41,10 @@ public class SimpleBlockingQueue<T> {
         var result = queue.poll();
         notifyAll();
         return result;
+    }
+
+    public synchronized int size() {
+        return queue.size();
     }
 
 }

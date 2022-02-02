@@ -16,35 +16,17 @@ public class UserStorageImpl implements UserStorage {
 
     @Override
     public synchronized boolean add(User user) {
-        boolean result = true;
-        if (storage.containsKey(user.getId())) {
-            result = false;
-        } else {
-            storage.put(user.getId(), user);
-        }
-        return result;
+        return storage.putIfAbsent(user.getId(), user) == null;
     }
 
     @Override
     public synchronized boolean update(User user) {
-        boolean result = true;
-        if (!storage.containsKey(user.getId())) {
-            result = false;
-        } else {
-            storage.replace(user.getId(), user);
-        }
-        return result;
+        return storage.replace(user.getId(), user) != null;
     }
 
     @Override
     public synchronized boolean delete(User user) {
-        boolean result = true;
-        if (!storage.containsKey(user.getId())) {
-            result = false;
-        } else {
-            storage.remove(user.getId());
-        }
-        return result;
+        return storage.remove(user.getId()) != null;
     }
 
     @Override

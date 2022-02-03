@@ -17,7 +17,7 @@ public class Cache {
         return memory.computeIfPresent(
                 model.getId(), (key, value) -> {
                     var cachedVersion = value.getVersion();
-                    if (value.getVersion() != model.getVersion()) {
+                    if (cachedVersion != model.getVersion()) {
                         throw new OptimisticException("Versions are not equal");
                     }
                     var updatedBase = new Base(model.getId(), cachedVersion + 1);

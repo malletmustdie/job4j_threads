@@ -19,11 +19,7 @@ public class CASCount {
     }
 
     public int get() {
-        var ref = count.get();
-        if (ref == null) {
-            throw new UnsupportedOperationException("Count is not impl.");
-        }
-        return ref;
+        return count.get();
     }
 
 }

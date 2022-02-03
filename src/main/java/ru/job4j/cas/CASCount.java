@@ -15,7 +15,7 @@ public class CASCount {
         do {
             value = get();
             incrValue = value++;
-        } while (count.compareAndSet(value, incrValue));
+        } while (!count.compareAndSet(value, incrValue));
     }
 
     public int get() {
